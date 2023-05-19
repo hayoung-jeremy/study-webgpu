@@ -11,6 +11,7 @@
     <script type="module">
       const canvas = await document.querySelector("canvas");
 
+      // Request an adapter and device
       if (!navigator.gpu) {
         throw new Error("WebGPU not supported on this browser");
       }
@@ -23,6 +24,15 @@
 
       const device = await adapter.requestDevice();
       console.log(device);
+
+      // Configure the Canvas
+      const context = canvas.getContext("webgpu");
+      const canvasFormat = navigator.gpu.getPreferredCanvasFormat();
+      context.configure({
+        device: device,
+        format: canvasFormat,
+      });
+      console.log(context);
     </script>
   </body>
 </html>
