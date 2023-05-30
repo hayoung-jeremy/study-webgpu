@@ -77,6 +77,26 @@
         `,
       });
 
+      // create a render pipeline
+      const cellPipeline = device.createRenderPipeline({
+        label: "Cell pipeline",
+        layout: "auto",
+        vertex: {
+          module: cellShaderModule,
+          entryPoint: "vertexMain",
+          buffers: [vertexBufferLayout],
+        },
+        fragment: {
+          module: cellShaderModule,
+          entryPoint: "fragmentMain",
+          targets: [
+            {
+              format: canvasFormat,
+            },
+          ],
+        },
+      });
+
       // Clear the Canvas
       const encoder = device.createCommandEncoder();
       const pass = encoder.beginRenderPass({
