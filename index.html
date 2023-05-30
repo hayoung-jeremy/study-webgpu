@@ -48,6 +48,18 @@
       });
       device.queue.writeBuffer(vertexBuffer, /*bufferOffset=*/ 0, vertices);
 
+      // define vertex layout
+      const vertexBufferLayout = {
+        arrayStride: 8,
+        attributes: [
+          {
+            format: "float32x2",
+            offset: 0,
+            shaderLocation: 0, // Position. Matches @loaction(0) in the @vertex shader.
+          },
+        ],
+      };
+
       // Clear the Canvas
       const encoder = device.createCommandEncoder();
       const pass = encoder.beginRenderPass({
