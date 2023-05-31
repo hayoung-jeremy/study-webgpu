@@ -110,6 +110,12 @@
           },
         ],
       });
+
+      // draw the square
+      pass.setPipeline(cellPipeline);
+      pass.setVertexBuffer(0, vertexBuffer);
+      pass.draw(vertices.length / 2); // 6 vertices
+
       pass.end();
 
       const commandBuffer = encoder.finish();
